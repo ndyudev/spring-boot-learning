@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mail Form</title>
+    <style>
+        input { width: 350px; }
+        textarea { width: 350px; height: 80px; }
+        div { width: 60%; }
+    </style>
+</head>
+<body>
+
+<div>
+    <center><h1>Send Mail</h1></center>
+
+    <form th:action="@{/mail/upload}" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    <!-- tương đương formaction="/mail/send" -->
+                    <input style="width:100px;text-align:center;"
+                           type="submit"
+                           th:formaction="@{/mail/send}"
+                           value="Send"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Sender :</td>
+                <td>
+                    <input name="from"
+                           placeholder="From ..."
+                           th:value="${param.from}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>To :</td>
+                <td>
+                    <input name="to"
+                           placeholder="To ..."
+                           th:value="${param.to}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Cc :</td>
+                <td>
+                    <input name="cc"
+                           placeholder="Cc ..."
+                           th:value="${param.cc}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Bcc :</td>
+                <td>
+                    <input name="bcc"
+                           placeholder="Bcc ..."
+                           th:value="${param.bcc}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Subject :</td>
+                <td>
+                    <input name="subject"
+                           placeholder="Subject ..."
+                           th:value="${param.subject}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Body :</td>
+                <td>
+                    <textarea name="body"
+                              th:text="${param.body}"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Attachments :</td>
+                <td>
+                    <textarea name="attachs"
+                              th:text="${filenames}"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="file"
+                           name="loads"
+                           multiple
+                           onchange="this.form.submit()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div th:text="${result}"></div>
+
+</body>
+</html>

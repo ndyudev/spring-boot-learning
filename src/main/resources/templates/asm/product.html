@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{asm/index :: layout(~{::title}, ~{::main})}">
+<head>
+    <title>Sản phẩm</title>
+</head>
+<body>
+<main>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Danh sách Sản phẩm</h4>
+        <!-- Sort By Price: toggle giữa sort và bỏ sort -->
+        <div>
+            <a th:if="${!sorted}" th:href="@{/home/product(sort='price')}"
+               class="btn btn-outline-secondary btn-sm">
+                Sort By Price
+            </a>
+            <a th:if="${sorted}" th:href="@{/home/product}"
+               class="btn btn-secondary btn-sm">
+                Bỏ sắp xếp
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-sm">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${products}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.name}"></td>
+                <td>
+                    <img th:src="@{'/'+${p.image}}" alt="img"
+                         style="width:50px;height:50px;object-fit:cover;"
+                         onerror="this.src='https://via.placeholder.com/50'">
+                </td>
+                <!-- Giá định dạng: tách hàng ngàn, 1 số lẻ, đơn vị VNĐ -->
+                <td th:text="${#numbers.formatDecimal(p.price, 1, 'COMMA', 1, 'POINT')} + ' VNĐ'"></td>
+                <!-- Số lượng tồn kho -->
+                <td th:text="${p.quantity}"></td>
+                <td>
+                    <!-- Còn hàng: quantity > 0 -->
+                    <a th:if="${p.quantity != null and p.quantity > 0}"
+                       th:href="@{/home/cart/add/{id}(id=${p.id}, sort=${sorted ? 'price' : null})}"
+                       class="btn btn-outline-primary btn-sm">Add to Cart</a>
+                    <!-- Hết hàng: disabled -->
+                    <button th:unless="${p.quantity != null and p.quantity > 0}"
+                            class="btn btn-secondary btn-sm" disabled>Hết hàng</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
+

@@ -7,11 +7,16 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {
-        // Do trùng bean nên phải scan riêng
-        "com.ndyudev.lab7"
+        "com.ndyudev.lab8",
+        "com.ndyudev.lab7" // Scan thêm lab 7
 })
-@EntityScan(basePackages = "com.ndyudev.lab7.model")
-@EnableJpaRepositories(basePackages = "com.ndyudev.lab7.repository")
+@EntityScan({
+        "com.ndyudev.lab8.model",
+        "com.ndyudev.lab7.model" // Scan thêm Entity lab 7
+})
+@EnableJpaRepositories({
+        "com.ndyudev.lab7.repository" // Scan thêm Repo lab 7
+})
 @Import(com.ndyudev.lab5.service.SessionService.class)
 public class SpringBootMvcJava5Application {
 

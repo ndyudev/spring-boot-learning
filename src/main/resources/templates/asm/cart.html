@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{asm/index :: layout(~{::title}, ~{::main})}">
+<head>
+    <title>Giỏ hàng</title>
+</head>
+<body>
+<main>
+    <h4 class="mb-3">Giỏ hàng</h4>
+
+    <!-- Thông báo thanh toán thành công (flash attribute) -->
+    <div th:if="${successMsg}" class="alert alert-success alert-dismissible fade show" role="alert">
+        🎉 <strong th:text="${successMsg}"></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Giỏ trống -->
+    <div th:if="${#lists.isEmpty(items)}" class="alert alert-secondary">
+        Giỏ hàng trống. <a th:href="@{/home/product}">Tiếp tục mua sắm</a>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(items)}">
+        <table class="table table-bordered table-sm align-middle">
+            <thead class="table-light">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.name}"></td>
+                <td>
+                    <img th:src="@{'/'+${item.image}}" alt="img"
+                         style="width:50px;height:50px;object-fit:cover;">
+                </td>
+                <td th:text="${#numbers.formatDecimal(item.price, 1, 'COMMA', 1, 'POINT')} + ' VNĐ'"></td>
+                <td>
+                    <form th:action="@{/home/cart/update/{id}(id=${item.id})}"
+                          method="post" class="d-flex align-items-center gap-1">
+                        <input type="number" name="quantity"
+                               th:value="${item.quantity}"
+                               min="1"
+                               th:max="${item.maxQuantity}"
+                               class="form-control form-control-sm"
+                               style="width:70px;"
+                               required>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm">Update</button>
+                    </form>
+                </td>
+                <td th:text="${#numbers.formatDecimal(item.price * item.quantity, 1, 'COMMA', 1, 'POINT')} + ' VNĐ'"></td>
+                <td>
+                    <a th:href="@{/home/cart/remove/{id}(id=${item.id})}"
+                       class="btn btn-outline-danger btn-sm">Remove</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="text-end fw-bold mb-3 fs-5">
+            Tổng tiền:
+            <span th:text="${#numbers.formatDecimal(total, 1, 'COMMA', 1, 'POINT')} + ' VNĐ'"></span>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a th:href="@{/home/cart/clear}" class="btn btn-outline-secondary btn-sm">Clear Cart</a>
+        <a th:href="@{/home/product}" class="btn btn-outline-primary btn-sm">Add more</a>
+        <a th:href="@{/home/cart/checkout}" class="btn btn-success btn-sm"
+           th:unless="${#lists.isEmpty(items)}">Payment</a>
+    </div>
+</main>
+</body>
+</html>
+
