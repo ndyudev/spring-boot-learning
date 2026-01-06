@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ndyudev</groupId>
-	<artifactId>spring-boot-learning</artifactId>
+	<artifactId>spring-boot-learning-ndyudev</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spring Boot MVC Java 5</name>
 	<description>Spring Boot MVC Java 5</description>
