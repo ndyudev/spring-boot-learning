@@ -22,11 +22,12 @@ public class AuthControllerLesson4 {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
 
-        if("ndyudev".equals(user) && "227206".equals(pass)){
+        if ("ndyudev".equals(user) && "227206".equals(pass)) {
             model.addAttribute("message", "Đăng nhập thành công");
+            return "/lab1/home";
         } else {
             model.addAttribute("message", "Tài khoản hoặc mật khẩu sai");
+            return "/lab1/login";
         }
-        return "/lab1/login";
     }
 }

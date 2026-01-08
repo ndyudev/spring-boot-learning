@@ -13,7 +13,6 @@ public class RectangleController {
     HttpServletRequest request;
     @GetMapping("/lab1/rectangle")
     public String Rectangle() {
-        System.out.println("vô thành công");
         return "/lab1/Rectangle";
     }
 
@@ -21,7 +20,6 @@ public class RectangleController {
     public String RectangleLogic(Model model) {
         String height = request.getParameter("height");
         String width = request.getParameter("width");
-        System.out.println(height);
 
         Double perimeter = (Double.parseDouble(height) + Double.parseDouble(width)) * 2; // Chu tích = Perimeter
         Double area = Double.parseDouble(height) * Double.parseDouble(width); // Diện tích = area
