@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("slide2")
 public class Slide2Login {
-    @GetMapping("login")
+    @RequestMapping("login")
     public String login() {
         return "/slide2/Slide2Login";
     }
 
-    @PostMapping("form")
+    @RequestMapping("form")
     public String form(@RequestParam("user") String username, @RequestParam("pass") String password, Model model) {
         if("ndyudev".equals(username) && "227".equals(password)){
             model.addAttribute("message","Đăng nhập thành công " + username );
