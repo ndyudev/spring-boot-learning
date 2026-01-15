@@ -13,11 +13,35 @@
 </head>
 <body>
 
+<div class="container mt-5 text-center">
+    <h3 class="text-primary">Lab 2 Lesson 5</h3>
 
+    <div class="alert alert-warning my-4"
+         th:if="${message != null or param.message != null}">
+
+        Thông điệp nhận được:
+        <b class="text-danger" th:text="${message} ?: ${param.message}"></b>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="list-group w-50 mx-auto">
+        <a href="/lab2/lesson5/return" class="list-group-item list-group-item-action">
+            Vào trang A (Mặc định)
+        </a>
+        <a href="/lab2/lesson5/forward" class="list-group-item list-group-item-action list-group-item-primary">
+            Vào B (Forward về A) -> Giữ nguyên URL /b
+        </a>
+        <a href="/lab2/lesson5/redirect" class="list-group-item list-group-item-action list-group-item-success">
+            Vào C (Redirect về A) -> URL đổi thành /a
+        </a>
+        <a href="/lab2/lesson5/resp" class="list-group-item list-group-item-action list-group-item-warning">
+            Vào D (Response Body) -> Hiện text thô
+        </a>
+    </div>
+</div>
 
-    <script th:src="@{/js/main.js}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>
