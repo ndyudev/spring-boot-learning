@@ -7,28 +7,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/lab2/lesson5")
 public class Lesson5ResultController {
 
-    @RequestMapping("/a")
-    public String m1() {
-        return "/lab2/Lesson5ResultForm";
+    @RequestMapping("/return")
+    public String Return() {
+        return "lab2/Lesson5ResultForm";
     }
 
-    @RequestMapping("/b")
-    public String m2(Model model) {
-        model.addAttribute("message", "I come from b");
-        return "forward:/lab2/Lesson5ResultForm";
+    @RequestMapping("/forward")
+    public String Forward(Model model) {
+        model.addAttribute("message", "I come from b (Forward)");
+        return "forward:return";
     }
 
-    @RequestMapping("/c")
-    public String m3(RedirectAttributes params) {
-        params.addAttribute("message", "I come from c");
-        return "redirect:/lab2/Lesson5ResultForm";
-    }
+    @RequestMapping("/redirect")
+    public String Redirect(RedirectAttributes params) {
+        params.addAttribute("message", "I come from c (Redirect)");
 
+        return "redirect:return";
+    }
     @ResponseBody
-    @RequestMapping("/d")
-    public String m4() {
-        return "I come from d";
+    @RequestMapping("/resp")
+    public String Resp() {
+        return "I come from d (Response Body)";
     }
 }
