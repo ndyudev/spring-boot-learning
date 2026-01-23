@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="view(title, content)">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${title}">Layout Title</title>
+</head>
+<body>
+<header>
+    <h1 th:text="#{header.name}">HEADER</h1>
+</header>
+
+<nav th:replace="~{/lab4/shared/menu :: menu}"></nav>
+
+<article th:replace="${content}"></article>
+
+<footer>
+    <hr>
+    <p th:utext="#{footer.copy}"></p>
+</footer>
+</body>
+</html>
