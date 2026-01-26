@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký thành viên</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+
+<h2 class="text-center text-primary">ĐĂNG KÝ THÀNH VIÊN</h2>
+
+<div th:if="${message}" class="alert alert-success text-center">
+    <span th:text="${message}"></span>
+    <br>
+    <img th:src="${avatarUrl}"
+         alt="Avatar"
+         style="max-width: 150px; max-height: 150px; border-radius: 50%; margin-top: 10px;">
+    <p>Xin chào: <b th:text="${fullname}"></b> (<i th:text="${username}"></i>)</p>
+    <div class="alert alert-warning mt-2" style="font-size: 12px; word-break: break-all;">
+        <b>File đã lưu tại:</b> <span th:text="${avatarUrl}"></span>
+    </div>
+</div>
+
+<form action="/lab5/lesson3/register" method="post" enctype="multipart/form-data" class="card p-4 mx-auto" style="max-width: 500px">
+
+    <div class="mb-3">
+        <label class="form-label">Username:</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Họ và tên:</label>
+        <input type="text" name="fullname" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email:</label>
+        <input type="email" name="email" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Avatar:</label>
+        <input type="file" name="photo_file" class="form-control">
+    </div>
+
+    <button class="btn btn-primary w-100">Đăng ký</button>
+</form>
+
+</body>
+</html>
