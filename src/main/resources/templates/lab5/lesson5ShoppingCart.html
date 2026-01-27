@@ -28,8 +28,18 @@
                         <p class="card-text" th:text="${item.getQuantity()}"></p>
                         <p class="card-text"><strong>Price: </strong><span th:text="${item.getPrice()}"></span> USD</p>
                     </div>
-                    <div class="card-footer">
-                        <a class="btn btn-outline-danger" th:href="@{|/lab5/lesson5/add/${item.getId()}|}">Add to cart</a>
+                    <div class="card-footer text-center">
+                        <a th:if="${item.quantity > 0}"
+                           class="btn btn-outline-danger w-100"
+                           th:href="@{|/lab5/lesson5/add/${item.id}|}">
+                            <i class="fa-solid fa-cart-plus"></i> Add to cart
+                        </a>
+
+                        <button th:unless="${item.quantity > 0}"
+                                class="btn btn-secondary w-100"
+                                disabled>
+                            <i class="fa-solid fa-ban"></i> Hết hàng
+                        </button>
                     </div>
                 </div>
             </div>

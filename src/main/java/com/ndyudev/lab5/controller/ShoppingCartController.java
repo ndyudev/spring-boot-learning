@@ -55,4 +55,10 @@ public class ShoppingCartController {
         cartService.clear();
         return "redirect:/lab5/lesson5/cart";
     }
+
+    @GetMapping("checkout")
+    public String checkout() {
+        cartService.checkout();
+        return "redirect:/lab5/lesson5/list";
+    }
 }

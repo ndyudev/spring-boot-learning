@@ -46,4 +46,9 @@ public interface ShoppingCartService {
      * @return amount
      */
     double getAmount();
+
+    /**
+     * Thanh toán giỏ hàng
+     */
+    void checkout();
 }

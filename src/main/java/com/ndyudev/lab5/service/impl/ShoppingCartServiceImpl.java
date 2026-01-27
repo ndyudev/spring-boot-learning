@@ -21,16 +21,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public Item add(Item item) {
-        // Kiểm tra giỏ hàng có chưa
-        Item existingItem = cart.get(item.getId());
-        if (existingItem != null) {
-            existingItem.setQuantity(existingItem.getQuantity() + 1);
-            return existingItem;
+        Item dbItem = ItemData.items.get(item.getId());
+
+        Item cartItem = cart.get(item.getId());
+
+        if (cartItem == null) {
+            if (dbItem != null && dbItem.getQuantity() > 0) {
+                cartItem = new Item();
+                cartItem.setId(dbItem.getId());
+                cartItem.setName(dbItem.getName());
+                cartItem.setPrice(dbItem.getPrice());
+                cartItem.setQuantity(1);
+                cart.put(cartItem.getId(), cartItem);
+            }
         } else {
-            item.setQuantity(1);
-            cart.put(item.getId(), item);
-            return item;
+            if (dbItem != null && (cartItem.getQuantity() + 1) <= dbItem.getQuantity()) {
+                cartItem.setQuantity(cartItem.getQuantity() + 1);
+            }
         }
+
+        return cartItem;
     }
 
     @Override
@@ -77,5 +87,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return cart.values().stream()
                 .mapToDouble(item -> item.getPrice() * item.getQuantity())
                 .sum();
+    }
+
+    @Override
+    public void checkout() {
+        for (Item cartItem : cart.values()) {
+            Item dbItem = ItemData.items.get(cartItem.getId());
+            if (dbItem != null) {
+                int newQuality = dbItem.getQuantity() - cartItem.getQuantity();
+
+                if (newQuality < 0) newQuality = 0;
+
+                dbItem.setQuantity(newQuality);
+            }
+        }
+        clear();
     }
 }
