@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{slide6/category/layout}"> <head>
+    <title>Trang Quản Lý Danh Mục</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <h3 class="text-center text-uppercase text-primary mb-4 fw-bold">Quản lý Danh Mục Sản Phẩm</h3>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div th:replace="~{slide6/category/input :: input-form}"></div>
+        </div>
+
+        <div class="col-md-8">
+            <div th:replace="~{slide6/category/table :: list-table}"></div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

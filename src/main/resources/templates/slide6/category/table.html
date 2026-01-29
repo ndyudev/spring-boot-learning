@@ -1,0 +1,30 @@
+<div th:fragment="list-table">
+    <div class="card shadow-sm h-100">
+        <div class="card-header bg-success text-white fw-bold">
+            <i class="fa-solid fa-list"></i> DANH SÁCH
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th class="text-center">Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td class="text-center">
+                        <!-- use controller mapping for edit -->
+                        <a th:href="@{/slide6/jpa/category/edit/{id}(id=${item.id})}" class="btn btn-sm btn-outline-primary">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
