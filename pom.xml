@@ -52,6 +52,10 @@
             <version>1.39.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
         <!-- Source : https://github.com/cdimascio/dotenv-java -->
         <dependency>
             <groupId>io.github.cdimascio</groupId>

@@ -1,0 +1,31 @@
+<div th:fragment="input-form">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="fa-solid fa-keyboard"></i> NHẬP LIỆU
+        </div>
+        <div class="card-body">
+            <form th:object="${category}" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Category ID</label>
+                    <input type="text" class="form-control" th:field="*{id}" placeholder="Nhập mã loại...">
+                    <div th:if="${#fields.hasErrors('id')}" class="text-danger small" th:errors="*{id}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category Name</label>
+                    <input type="text" class="form-control" th:field="*{name}" placeholder="Nhập tên loại...">
+                    <div th:if="${#fields.hasErrors('name')}" class="text-danger small" th:errors="*{name}"></div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <!-- updated paths to match controller mapping -->
+                    <button class="btn btn-primary" th:formaction="@{/slide6/jpa/category/create}">Create</button>
+                    <button class="btn btn-warning text-white" th:formaction="@{/slide6/jpa/category/update}">Update</button>
+                    <button class="btn btn-danger" th:formaction="@{/slide6/jpa/category/delete}">Delete</button>
+                    <a th:href="@{/slide6/jpa/category/form}" class="btn btn-secondary">Reset</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
