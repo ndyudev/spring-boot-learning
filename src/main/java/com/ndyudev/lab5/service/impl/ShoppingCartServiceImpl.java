@@ -81,7 +81,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .mapToInt(item -> item.getQuantity())
                 .sum();
     }
-
+    // Stream API & Lambda expression
     @Override
     public double getAmount() {
         return cart.values().stream()
