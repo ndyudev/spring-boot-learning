@@ -1,0 +1,44 @@
+<div th:fragment="table" class="card shadow-sm">
+  <div class="card-header bg-white text-primary fw-bold">
+    Danh sách tài khoản
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered mb-0">
+        <thead class="table-primary text-center">
+        <tr>
+          <th>Username</th>
+          <th>Fullname</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(items)}">
+          <td colspan="5" class="text-center text-muted py-3">Chưa có dữ liệu</td>
+        </tr>
+
+        <tr th:each="item : ${items}">
+          <td class="fw-bold" th:text="${item.username}">User</td>
+          <td th:text="${item.fullName}">Name</td>
+          <td th:text="${item.email}">Email</td>
+          <td class="text-center">
+            <span th:if="${item.admin}" class="badge bg-danger">Admin</span>
+            <span th:unless="${item.admin}" class="badge bg-secondary">User</span>
+          </td>
+          <td class="text-center">
+            <a th:href="@{/lab6/account/edit/{id}(id=${item.username})}"
+               class="btn btn-sm btn-outline-info">
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer bg-white text-muted small">
+    Tổng số: <span th:text="${#lists.size(items)}">0</span> tài khoản
+  </div>
+</div>
