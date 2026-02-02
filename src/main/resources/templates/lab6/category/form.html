@@ -1,0 +1,41 @@
+<div th:fragment="form" class="card shadow-sm">
+    <div class="card-header bg-white text-primary fw-bold">
+        Form Nhập Liệu
+    </div>
+    <div class="card-body">
+        <form th:action="@{/lab6/category/index}" method="post" th:object="${category}">
+
+            <div class="mb-3">
+                <label for="id" class="form-label fw-bold">Category ID</label>
+                <input type="text" class="form-control" id="id" th:field="*{id}"
+                       placeholder="Nhập mã loại..." required>
+            </div>
+
+            <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Category Name</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}"
+                       placeholder="Nhập tên loại..." required>
+            </div>
+
+            <hr>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" th:formaction="@{/lab6/category/create}">
+                    <i class="fa-solid fa-plus"></i> Create
+                </button>
+
+                <button class="btn btn-warning text-white" th:formaction="@{/lab6/category/update}">
+                    <i class="fa-solid fa-pen"></i> Update
+                </button>
+
+                <button class="btn btn-danger" th:formaction="@{/lab6/category/delete}">
+                    <i class="fa-solid fa-trash"></i> Delete
+                </button>
+
+                <a th:href="@{/lab6/category/index}" class="btn btn-secondary">
+                    <i class="fa-solid fa-rotate-right"></i> Reset
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
