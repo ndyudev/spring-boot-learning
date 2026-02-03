@@ -11,7 +11,17 @@ import java.util.List;
 
 @Service
 public interface ProductService extends BaseService<Product, Long> {
-    List<Product> findAll(Sort sort);
+    /**
+     * Find all with sort
+     * @param sort
+     * @return
+     */
+    public List<Product> findAll(Sort sort);
 
-    Page<Product> findAll(Pageable pageable);
+    /**
+     * Find all with pageable
+     * @param pageable
+     * @return
+     */
+    public Page<Product> findAll(Pageable pageable);
 }

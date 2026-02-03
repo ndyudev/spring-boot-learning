@@ -9,9 +9,6 @@
 
 <div class="container mt-5">
     <div class="card shadow">
-        <div class="card-header bg-white">
-            <h3 class="text-primary fw-bold">PAGINATION</h3>
-        </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
                 <thead class="table-secondary text-center">
@@ -33,23 +30,23 @@
             </table>
 
             <div class="text-center mt-3">
-                <a th:href="@{/product/page(p=0)}" class="btn btn-outline-primary btn-sm">First</a>
+                <a th:href="@{/lab6/product/page?p=0}" class="btn btn-outline-primary btn-sm">First</a>
 
-                <a th:href="@{/product/page(p=${page.number - 1})}"
+                <a th:href="@{|/lab6/product/page?p=${page.number - 1}|}"
                    th:classappend="${page.first} ? 'disabled' : ''"
                    class="btn btn-outline-primary btn-sm">Previous</a>
 
-                <a th:href="@{/product/page(p=${page.number + 1})}"
+                <a th:href="@{|/lab6/product/page?p=${page.number + 1}|}"
                    th:classappend="${page.last} ? 'disabled' : ''"
                    class="btn btn-outline-primary btn-sm">Next</a>
 
-                <a th:href="@{/product/page(p=${page.totalPages - 1})}" class="btn btn-outline-primary btn-sm">Last</a>
+                <a th:href="@{|/lab6/product/page?p=${page.totalPages - 1}|}" class="btn btn-outline-primary btn-sm">Last</a>
             </div>
 
-            <div class="mt-4 alert alert-info">
-                <ul class="mb-0 list-unstyled">
+            <div class="mt-4">
+                <ul class="mb-0">
                     <li>Số thực thể hiện tại: <strong th:text="${page.numberOfElements}"></strong></li>
-                    <li>Trang số: <strong th:text="${page.number}"></strong> (Lưu ý: Bắt đầu từ 0)</li>
+                    <li>Trang số: <strong th:text="${page.number}"></strong></li>
                     <li>Kích thước trang: <strong th:text="${page.size}"></strong></li>
                     <li>Tổng số thực thể: <strong th:text="${page.totalElements}"></strong></li>
                     <li>Tổng số trang: <strong th:text="${page.totalPages}"></strong></li>

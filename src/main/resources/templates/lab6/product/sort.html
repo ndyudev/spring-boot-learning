@@ -10,37 +10,33 @@
 <div class="container mt-5">
     <div class="card shadow">
         <div class="card-header bg-white">
-            <h3 class="text-primary fw-bold">
-                SORTING BY <span class="text-danger" th:text="${field}">PRICE</span>
-            </h3>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
                 <thead class="table-secondary text-center">
                 <tr>
                     <th>
-                        <a th:href="@{/product/sort(field='id')}" class="text-decoration-none fw-bold">Id</a>
+                        <a th:href="@{/lab6/product/sort?field=id}" class="text-decoration-none fw-bold">Id</a>
                     </th>
                     <th>
-                        <a th:href="@{/product/sort(field='name')}" class="text-decoration-none fw-bold">Name</a>
+                        <a th:href="@{/lab6/product/sort?field=name}" class="text-decoration-none fw-bold">Name</a>
                     </th>
                     <th>
-                        <a th:href="@{/product/sort(field='price')}" class="text-decoration-none fw-bold">Price</a>
+                        <a th:href="@{/lab6/product/sort?field=price}" class="text-decoration-none fw-bold">Price</a>
                     </th>
                     <th>
-                        <a th:href="@{/product/sort(field='createAt')}" class="text-decoration-none fw-bold">Date</a>
+                        <a th:href="@{/lab6/product/sort?field=createAt}" class="text-decoration-none fw-bold">Date</a>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="item : ${items}">
-                    <td class="text-center" th:text="${item.id}">1001</td>
-                    <td th:text="${item.name}">Samsung Galaxy</td>
-                    <td class="text-end fw-bold text-success"
+                    <td class="text-center" th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td class="text-end fw-bold"
                         th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}">
-                        100.00
                     </td>
-                    <td class="text-center" th:text="${item.createAt}">2025-01-01</td>
+                    <td class="text-center" th:text="${item.createAt}"></td>
                 </tr>
                 </tbody>
             </table>

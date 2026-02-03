@@ -18,8 +18,8 @@
                 </tr>
 
                 <tr th:each="item : ${items}">
-                    <td class="text-center fw-bold" th:text="${item.id}">CATEGORY_ID</td>
-                    <td th:text="${item.name}">CATEGORY_NAME</td>
+                    <td class="text-center fw-bold" th:text="${item.id}">Id</td>
+                    <td th:text="${item.name}">Name</td>
                     <td class="text-center">
                         <a th:href="@{/lab6/category/edit/{id}(id=${item.id})}"
                            class="btn btn-sm btn-outline-info">

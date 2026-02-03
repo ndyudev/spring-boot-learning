@@ -35,10 +35,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepo.findAll();
     }
 
-    /**
-     * @param sort
-     * @return
-     */
     @Override
     public List<Product> findAll(Sort sort) {
         return productRepo.findAll(sort);
