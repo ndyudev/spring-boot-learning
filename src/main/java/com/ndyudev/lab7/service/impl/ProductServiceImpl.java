@@ -15,6 +15,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepo;
+
     @Override
     public Product save(Product entity) {
         return productRepo.save(entity);
@@ -56,4 +57,74 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findByPriceBetween(Double minPrice, Double maxPrice) {
         return productRepo.findByPriceBetween(minPrice, maxPrice);
     }
+
+    /**
+     * Find by name using JPQL
+     *
+     * @param keyword String
+     * @return List of Product
+     */
+    @Override
+    public List<Product> findByNameJPQL(String keyword) {
+        return productRepo.findByNameJPQL(keyword);
+    }
+
+    /**
+     * Find by name using method DSL
+     *
+     * @param keyword String
+     * @return List<Product>
+     */
+    @Override
+    public List<Product> findByNameContaining(String keyword) {
+        return productRepo.findByNameContaining(keyword);
+    }
+
+    /**
+     * Find by name using Native Query
+     *
+     * @param keyword String
+     * @return List<Product>
+     */
+    @Override
+    public List<Product> findByNameLikeNative(String keyword) {
+        return productRepo.findByNameLikeNative(keyword);
+    }
+
+    /**
+     * Fin by name and page using JPQL
+     *
+     * @param keyword  String
+     * @param pageable Pageable
+     * @return Page<Product>
+     */
+    @Override
+    public Page<Product> findByKeyWords(String keyword, Pageable pageable) {
+        return productRepo.findByKeyWords(keyword, pageable);
+    }
+
+    /**
+     * Find all by name with DSL
+     *
+     * @param name     String
+     * @param pageable Pageable
+     * @return Page<Product>
+     */
+    @Override
+    public Page<Product> findAllByNameContaining(String name, Pageable pageable) {
+        return productRepo.findAllByNameContaining(name, pageable);
+    }
+
+
+    /**
+     * Find by name and page using JPQL
+     *
+     * @param keyword  String
+     * @param pageable Pageable
+     * @return Page<Product>
+     */
+//    @Override
+//    public Page<Product> findByNameContaining(String keyword, Pageable pageable) {
+//        return productRepo.findByNameContaining(keyword, pageable);
+//    }
 }

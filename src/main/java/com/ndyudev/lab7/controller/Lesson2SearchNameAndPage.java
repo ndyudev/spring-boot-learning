@@ -1,5 +1,6 @@
 package com.ndyudev.lab7.controller;
 
+import com.ndyudev.lab5.service.SessionService;
 import com.ndyudev.lab7.model.Product;
 import com.ndyudev.lab7.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,15 @@ import java.util.Optional;
 public class Lesson2SearchNameAndPage {
     @Autowired
     ProductService productService;
-
+    @Autowired
+    SessionService sessionService;
     @GetMapping("name-page")
-    public String index(Model model, @RequestParam("p") Optional<Integer> page) {
+    public String index(Model model, @RequestParam("p") Optional<Integer> page, @RequestParam("keyword") Optional<String> keyword) {
         Pageable pageNumber = PageRequest.of(page.orElse(0), 5);
-        Page<Product> Page = productService.findAll(pageNumber);
+
+        String keywordValue = keyword.orElse(sessionService.get(("keyword") , ""));
+        sessionService.set("keyword", keywordValue);
+        Page<Product> Page = productService.findByKeyWords(keywordValue, pageNumber);
         model.addAttribute("page", Page);
         return "lab7/Lesson2SearchNameAndPage";
     }
