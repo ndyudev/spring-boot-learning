@@ -1,6 +1,7 @@
 package com.ndyudev.lab7.service.impl;
 
 import com.ndyudev.lab7.model.Category;
+import com.ndyudev.lab7.model.ReportDTO;
 import com.ndyudev.lab7.repository.CategoryRepository;
 import com.ndyudev.lab7.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,15 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAll() {
         return categoryRepo.findAll();
+    }
+
+    /**
+     * Get inventory by category
+     *
+     * @return List<ReportDTO>
+     */
+    @Override
+    public List<ReportDTO> getInventoryByCategory() {
+        return categoryRepo.getInventoryByCategory();
     }
 }

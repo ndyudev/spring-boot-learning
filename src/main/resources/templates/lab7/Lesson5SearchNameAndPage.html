@@ -11,7 +11,7 @@
     <div class="mb3">
         <h2 class="text-info">Search & Page</h2>
     </div>
-    <form action="/lab7/lesson2/name-page" method="get">
+    <form action="/lab7/lesson5/name" method="get">
         <input type="text" class="form-control" name="keyword" placeholder="Enter name to search" id="keyword"
                th:value="${param.keyword}">
         <button class="btn btn-outline-primary my-3">Search</button>
@@ -38,18 +38,18 @@
             </table>
 
             <div class="text-center mt-3">
-                <a th:href="@{/lab7/lesson2/name-page(p = 0, keyword = ${session.keyword})}"
+                <a th:href="@{/lab7/lesson5/name(page = 0, keyword = ${session.keyword})}"
                    class="btn btn-outline-primary btn-sm">First</a>
 
-                <a th:href="@{/lab7/lesson2/name-page(p=${page.number - 1},keyword=${session.keyword})}"
+                <a th:href="@{/lab7/lesson5/name(page=${page.number - 1},keyword=${session.keyword})}"
                    th:classappend="${page.first} ? 'disabled' : ''"
                    class="btn btn-outline-primary btn-sm">Previous</a>
 
-                <a th:href="@{/lab7/lesson2/name-page(p=${page.number + 1}, keyword=${session.keyword})}"
+                <a th:href="@{/lab7/lesson5/name(page=${page.number + 1}, keyword=${session.keyword})}"
                    th:classappend="${page.last} ? 'disabled' : ''"
                    class="btn btn-outline-primary btn-sm">Next</a>
 
-                <a th:href="@{/lab7/lesson2/name-page(p=${page.totalPages - 1},keyword=${session.keyword})}"
+                <a th:href="@{/lab7/lesson5/name(page=${page.totalPages - 1},keyword=${session.keyword})}"
                    class="btn btn-outline-primary btn-sm">Last</a>
             </div>
 
