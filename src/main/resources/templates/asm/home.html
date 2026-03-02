@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{asm/index :: layout(~{::title}, ~{::main})}">
+<head>
+    <title>Trang chủ</title>
+</head>
+<body>
+<main>
+    <h4>Trang chủ</h4>
+    <p class="text-muted">Shop</p>
+    <a th:href="@{/home/product}" class="btn btn-primary btn-sm">Xem sản phẩm</a>
+</main>
+</body>
+</html>
+
